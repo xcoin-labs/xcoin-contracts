@@ -1,66 +1,103 @@
-## Foundry
+# XCoin Contracts
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository houses the `XCoin` and `Distribution` contracts.
 
-Foundry consists of:
+## XCoin
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+XCoin is an ERC-20 token. See [src/XCoin.sol](./src/XCoin.sol).
 
-## Documentation
+### Properties
 
-https://book.getfoundry.sh/
+```
+Name: XCoin
+Symbol: XCOIN
+Total Supply: 10,000,000,000
+```
+
+### Deployment
+
+```
+Chain: Ethereum
+Contract Name: XCoin
+Contract Address: 0x54CA815817aB29c389053f47FfB6d57aEE958877
+```
+
+## Distribution
+
+Allows users to claim tokens based on validity and availability. See [src/Distribution.sol](./src/Distribution.sol).
+
+### Claim Conditions
+
+```
+1. One claim per address
+2. Not expired (52 weeks) 
+3. Valid signature (signed by contract owner)
+4. Sufficient token balance 
+```
+
+### Deployment
+
+```
+Chain: Ethereum
+Contract Name: Distribution
+Contract Address: 0x1D3f9511ED01F7a8F0071e92C05c2BD439a91706
+```
 
 ## Usage
 
-### Build
+### Requirements
+
+You will need to install:
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [foundry](https://getfoundry.sh)
+
+### Quickstart
+
+Clones this repository and builds contracts.
 
 ```shell
-$ forge build
+git clone https://github.com/xcoin-labs/xcoin-contracts
+cd xcoin-contracts
+forge build
+```
+
+### Clean Build
+
+Reinstalls dependencies and rebuilds artifacts.
+
+```shell
+make
 ```
 
 ### Test
 
+Runs all tests in [test](./test).
+
 ```shell
-$ forge test
+forge test
 ```
 
-### Format
+### Coverage
+
+Estimates test coverage.
 
 ```shell
-$ forge fmt
+forge coverage
 ```
 
-### Gas Snapshots
+### Local Node
 
+Starts a local development node.
 ```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
+anvil
 ```
 
 ### Deploy
 
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
+Deploys contracts using [script/Deploy.s.sol](./script/Deploy.s.sol).
+Set `RPC_URL`, `PRIVATE_KEY` and `ETHERSCAN_API_KEY` in the environment before running this command.
 
 ```shell
-$ cast <subcommand>
+make deploy
 ```
 
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
