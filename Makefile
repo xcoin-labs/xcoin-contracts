@@ -50,6 +50,18 @@ deploy:
 	--etherscan-api-key $(ETHERSCAN_API_KEY) \
 	-vvvv
 
+# Deploy2
+deploy2:
+	forge script script/Deploy2.s.sol:Deploy2 \
+	$(DEPLOY2_XCOIN_ADDRESS) \
+	$(DEPLOY2_EXPIRY) \
+	--rpc-url $(RPC_URL) \
+	--private-key $(PRIVATE_KEY) \
+	--broadcast \
+	--verify \
+	--etherscan-api-key $(ETHERSCAN_API_KEY) \
+	-vvvv
+
 # Verify contract
 verify:
 	forge verify-contract $(CONTRACT_ADDRESS) \

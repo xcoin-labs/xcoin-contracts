@@ -43,6 +43,28 @@ Contract Name: Distribution
 Contract Address: 0x1D3f9511ED01F7a8F0071e92C05c2BD439a91706
 ```
 
+## Distribution2
+
+Allows users to claim tokens based on validity and availability. See [src/Distribution2.sol](./src/Distribution2.sol).
+
+### Claim Conditions
+
+```
+1. One claim per address
+2. Not expired
+3. Valid signature (signed by contract owner)
+4. Sufficient token balance
+```
+
+### Deployment
+
+```
+Chain: Ethereum
+Contract Name: Distribution2
+Contract Address: 0x07e158D93f2E7c0509967243E924D8a6bf94db6e
+Expiry: 2027-12-18T00:00:00Z
+```
+
 ## Usage
 
 ### Requirements
@@ -99,5 +121,14 @@ Set `RPC_URL`, `PRIVATE_KEY` and `ETHERSCAN_API_KEY` in the environment before r
 
 ```shell
 make deploy
+```
+
+### Deploy2
+
+Deploys Distribution2 contract using [script/Deploy2.s.sol](./script/Deploy2.s.sol).
+Set `RPC_URL`, `PRIVATE_KEY`, `ETHERSCAN_API_KEY`, `DEPLOY2_XCOIN_ADDRESS` and `DEPLOY2_EXPIRY` in the environment before running this command.
+
+```shell
+make deploy2
 ```
 
